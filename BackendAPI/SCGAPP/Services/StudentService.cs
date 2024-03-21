@@ -21,6 +21,4 @@ public class StudentService : IStudentService
         await _studentsCollection.InsertOneAsync(studentModel);
         return studentModel;
     }
-
-    // Implementacje innych metod interfejsu
 }

@@ -23,8 +23,7 @@ public class CreateStudentEndpoint : Endpoint<CreateStudentRequest, CreateStuden
 
     public override async Task HandleAsync(CreateStudentRequest request, CancellationToken cancellationToken)
     {
-
-        var createdStudent = await _studentService.CreateStudentAsync(request);
+        await _studentService.CreateStudentAsync(request);
 
         await SendAsync(new CreateStudentResponse
         {

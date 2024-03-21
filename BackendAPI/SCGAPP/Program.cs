@@ -25,6 +25,7 @@ var database = mongoClient.GetDatabase(databaseName);
 builder.Services.AddAutoMapper(typeof(StudentMapper));
 // Dodaj klienta MongoDB do kontenera DI
 builder.Services.AddSingleton<MongoDbContext>(sp => new MongoDbContext(mongoConnectionString, databaseName));
+builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddSingleton<IMongoCollection<StudentModel>>(sp =>
 {
     return database.GetCollection<StudentModel>("students"); // SprawdŸ nazwê kolekcji
@@ -32,7 +33,16 @@ builder.Services.AddSingleton<IMongoCollection<StudentModel>>(sp =>
 
 // Register FastEndpoints
 builder.Services.AddFastEndpoints();
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAnyOrigin",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -42,12 +52,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(options =>
-{
-    options.AllowAnyHeader();
-    options.AllowAnyMethod();
-    options.AllowAnyOrigin();
-});
+
+
+app.UseCors("AllowAnyOrigin");
+
 
 app.UseHttpsRedirection();
 
