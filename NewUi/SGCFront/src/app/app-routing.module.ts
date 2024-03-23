@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StudentComponent } from './student/student/student.component';
+import { AddStudentComponent } from './student/addstudent/add-student/add-student.component';
+import { StudentsListComponent } from './student/students-list/students-list.component';
 
 const routes: Routes = [
-  { path: 'student/create', component: StudentComponent },
+  { path: 'student/create', component: AddStudentComponent },
+  { path: 'student/getall', component: StudentsListComponent },
   // Dodaj inne trasy tutaj, jeśli są potrzebne
 ];
 
