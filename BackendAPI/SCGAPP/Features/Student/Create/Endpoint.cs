@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 public class CreateStudentEndpoint : Endpoint<CreateStudentRequest, CreateStudentResponse>
 {
     private readonly IStudentService _studentService;
+    private readonly AutoMapper.IMapper _mapper;
 
-    public CreateStudentEndpoint(IStudentService studentService)
+    public CreateStudentEndpoint(IStudentService studentService, AutoMapper.IMapper mapper)
     {
         _studentService = studentService;
+        _mapper = mapper;
     }
 
     public override void Configure()
@@ -23,7 +25,8 @@ public class CreateStudentEndpoint : Endpoint<CreateStudentRequest, CreateStuden
 
     public override async Task HandleAsync(CreateStudentRequest request, CancellationToken cancellationToken)
     {
-        await _studentService.CreateStudentAsync(request);
+       var student = _mapper.Map<StudentModel>(request);
+        await _studentService.CreateStudentAsync(student);
 
         await SendAsync(new CreateStudentResponse
         {

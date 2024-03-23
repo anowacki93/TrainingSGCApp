@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
 using SCGAPP.Features.Create;
+using SCGAPP.Features.Student.Edit;
+using SCGAPP.Features.Student.Get;
 using SCGAPP.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +25,8 @@ var mongoClient = new MongoClient(mongoConnectionString);
 var databaseName = "SGCDB"; // Nazwa twojej bazy danych MongoDB
 var database = mongoClient.GetDatabase(databaseName);
 builder.Services.AddAutoMapper(typeof(CreateStudentMapper));
+builder.Services.AddAutoMapper(typeof(GetStudentMapper));
+builder.Services.AddAutoMapper(typeof(EditStudentMapper));
 // Dodaj klienta MongoDB do kontenera DI
 builder.Services.AddSingleton<MongoDbContext>(sp => new MongoDbContext(mongoConnectionString, databaseName));
 builder.Services.AddScoped<IStudentService, StudentService>();

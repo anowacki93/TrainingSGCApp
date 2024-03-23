@@ -7,10 +7,8 @@ namespace SCGAPP.Features.Create
     {
         public CreateStudentMapper()
         {
-            CreateMap<CreateStudentRequest, StudentModel>();
+            CreateMap<StudentModel, CreateStudentRequest>();
         }
-
-
     }
 
 }

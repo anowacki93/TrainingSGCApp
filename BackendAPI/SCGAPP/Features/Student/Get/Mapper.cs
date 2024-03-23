@@ -7,7 +7,8 @@ namespace SCGAPP.Features.Student.Get
     {
         public GetStudentMapper() 
         {
-            CreateMap<StudentModel, GetStudentResponse>();
+            CreateMap<StudentModel, GetStudentResponse>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.ToString()));
         }
     }
 }

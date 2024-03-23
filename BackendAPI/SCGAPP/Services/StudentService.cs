@@ -2,56 +2,53 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
 using SCGAPP.Features.Create;
+using SCGAPP.Features.Student.Edit;
 using SCGAPP.Features.Student.Get;
 using SCGAPP.Models;
 
 public class StudentService : IStudentService
 {
     private readonly IMongoCollection<StudentModel> _studentsCollection;
-    private readonly AutoMapper.IMapper _mapper;
 
-    public StudentService(IMongoCollection<StudentModel> studentsCollection, AutoMapper.IMapper mapper)
+    public StudentService(IMongoCollection<StudentModel> studentsCollection)
     {
         _studentsCollection = studentsCollection;
-        _mapper = mapper;
     }
 
-    public async Task<StudentModel> CreateStudentAsync(CreateStudentRequest request)
+    public async Task<StudentModel> CreateStudentAsync(StudentModel request)
     {
-        var studentModel = _mapper.Map<StudentModel>(request);
+        var studentModel = new StudentModel();
         studentModel.Id = ObjectId.GenerateNewId();
         await _studentsCollection.InsertOneAsync(studentModel);
         return studentModel;
     }
 
-    public async Task<List<GetStudentResponse>> GetAllStudents()
+    public async Task<StudentModel> EditStudent(StudentModel student)
     {
-        var studentModelList =  await _studentsCollection.Find(x => true).ToListAsync();
-        if (studentModelList != null && studentModelList.Any())
+        var existingStudent = await GetById(student.Id);
+        if (existingStudent != null)
         {
-            var studentResponseList = new List<GetStudentResponse>();
-            foreach (var student in studentModelList)
-            {
-                studentResponseList.Add(_mapper.Map<GetStudentResponse>(student));
-            }
-            return studentResponseList;
+            var filter = Builders<StudentModel>.Filter.Eq("_id", existingStudent.Id);
+            var update = Builders<StudentModel>.Update
+                .Set("FirstName", student.FirstName)
+                .Set("LastName", student.LastName)
+                .Set("Age", student.Age);
+
+            await _studentsCollection.UpdateOneAsync(filter, update);
+
+            return student;
         }
         return null;
-
     }
 
-    public async Task<GetStudentResponse?> GetById(Guid Id)
+    public async Task<List<StudentModel>> GetAllStudents()
     {
-        var studentModel = await _studentsCollection.Find<StudentModel>(x => x.Id.Equals(Id)).FirstOrDefaultAsync();
+        return await _studentsCollection.Find(x => true).ToListAsync();
+    }
 
-        if (studentModel != null)
-        {
-            // Perform mapping from StudentModel to GetStudentResponse
-            var response = _mapper.Map<GetStudentResponse>(studentModel);
-            return response;
-        }
-
-        return null;
+    public async Task<StudentModel?> GetById(ObjectId Id)
+    {
+        return await _studentsCollection.Find<StudentModel>(x => x.Id.Equals(Id)).FirstOrDefaultAsync();
     }
 
 }
