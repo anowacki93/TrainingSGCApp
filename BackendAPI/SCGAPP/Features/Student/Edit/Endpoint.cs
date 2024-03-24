@@ -16,7 +16,7 @@ public class EditStudentEndpoint : Endpoint<EditStudentRequest>
 
     public override void Configure()
     {
-        Post("/student/edit");
+        Put("/student/edit/{id}");
         AllowAnonymous();
     }
 

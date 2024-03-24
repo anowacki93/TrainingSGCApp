@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { AddStudentComponent } from './student/addstudent/add-student/add-student.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { StudentsListComponent } from './student/students-list/students-list.component';
+import { EditStudentComponent } from './student/edit-student/edit-student.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AddStudentComponent,
-    StudentsListComponent
+    StudentsListComponent,
+    EditStudentComponent
   ],
   imports: [
     BrowserModule,

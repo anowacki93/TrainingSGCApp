@@ -26,6 +26,7 @@ var databaseName = "SGCDB"; // Nazwa twojej bazy danych MongoDB
 var database = mongoClient.GetDatabase(databaseName);
 builder.Services.AddAutoMapper(typeof(CreateStudentMapper));
 builder.Services.AddAutoMapper(typeof(GetStudentMapper));
+builder.Services.AddAutoMapper(typeof(GetAllStudentsMapper));
 builder.Services.AddAutoMapper(typeof(EditStudentMapper));
 // Dodaj klienta MongoDB do kontenera DI
 builder.Services.AddSingleton<MongoDbContext>(sp => new MongoDbContext(mongoConnectionString, databaseName));
