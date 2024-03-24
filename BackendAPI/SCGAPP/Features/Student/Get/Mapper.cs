@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MongoDB.Bson;
-using SCGAPP.Features.Create;
 using SCGAPP.Features.Student.Get;
 using SCGAPP.Models;
 

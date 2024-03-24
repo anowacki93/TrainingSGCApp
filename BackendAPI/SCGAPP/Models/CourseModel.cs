@@ -7,7 +7,6 @@ namespace SCGAPP.Models
     {
         public ObjectId Id { get; set; }
         public string Name { get; set; }
-        public Grade Grade { get; set; }
-        public List<EnrollmentModel> Enrollments { get; set; }
+        public List<EnrollmentModel>? Enrollments { get; set; }
     }
 }

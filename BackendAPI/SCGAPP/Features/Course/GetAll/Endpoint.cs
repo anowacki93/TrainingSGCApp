@@ -1,6 +1,5 @@
 ﻿using FastEndpoints;
 using MongoDB.Bson;
-using SCGAPP.Features.Create;
 using SCGAPP.Models;
 using SCGAPP.Services.Interfaces;
 

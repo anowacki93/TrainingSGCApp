@@ -1,18 +1,17 @@
 ﻿using AutoMapper;
 using MongoDB.Bson;
-using SCGAPP.Features.Create;
-using SCGAPP.Features.Student.Get;
+using SCGAPP.Features.Course.Get;
 using SCGAPP.Models;
 
-namespace SCGAPP.Features.Student.Edit
+namespace SCGAPP.Features.Course.Edit
 {
-    public class GetStudentMapper : Profile
+    public class GetCourseMapper : Profile
     {
-        public GetStudentMapper()
+        public GetCourseMapper()
         {
-            CreateMap<GetStudentRequest, StudentModel>()
+            CreateMap<GetCourseRequest, CourseModel>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => ObjectId.Parse(src.Id)));
-            CreateMap<StudentModel, GetStudentResponse>().ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.ToString()));
+            CreateMap<CourseModel, GetCourseResponse>().ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.ToString()));
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using FastEndpoints;
-using SCGAPP.Features.Create;
 using SCGAPP.Features.Course.Edit;
 using SCGAPP.Models;
 using SCGAPP.Services.Interfaces;
@@ -17,7 +16,7 @@ public class EditCourseEndpoint : Endpoint<EditCourseRequest>
 
     public override void Configure()
     {
-        Put("/Course/edit/{id}");
+        Put("/course/edit/{id}");
         AllowAnonymous();
     }
 

@@ -1,36 +1,40 @@
 ﻿using AutoMapper;
 using FastEndpoints;
+using MongoDB.Bson;
 using MongoDB.Driver;
-using SCGAPP.Features.Create;
 using SCGAPP.Models;
 using System.Threading;
 using System.Threading.Tasks;
 
-public class CreateStudentEndpoint : Endpoint<CreateStudentRequest, CreateStudentResponse>
+namespace SCGAPP.Features.Student.Create
 {
-    private readonly IStudentService _studentService;
-    private readonly AutoMapper.IMapper _mapper;
-
-    public CreateStudentEndpoint(IStudentService studentService, AutoMapper.IMapper mapper)
+    public class CreateStudentEndpoint : Endpoint<CreateStudentRequest, CreateStudentResponse>
     {
-        _studentService = studentService;
-        _mapper = mapper;
-    }
+        private readonly IStudentService _studentService;
+        private readonly AutoMapper.IMapper _mapper;
 
-    public override void Configure()
-    {
-        Post("/student/create");
-        AllowAnonymous();
-    }
-
-    public override async Task HandleAsync(CreateStudentRequest request, CancellationToken cancellationToken)
-    {
-       var student = _mapper.Map<StudentModel>(request);
-        await _studentService.CreateStudentAsync(student);
-
-        await SendAsync(new CreateStudentResponse
+        public CreateStudentEndpoint(IStudentService studentService, AutoMapper.IMapper mapper)
         {
-            Message = "Student created successfully",
-        });
+            _studentService = studentService;
+            _mapper = mapper;
+        }
+
+        public override void Configure()
+        {
+            Post("/student/create");
+            AllowAnonymous();
+        }
+
+        public override async Task HandleAsync(CreateStudentRequest request, CancellationToken cancellationToken)
+        {
+           var student = _mapper.Map<StudentModel>(request);
+            await _studentService.CreateStudentAsync(student);
+
+            await SendAsync(new CreateStudentResponse
+            {
+                Message = "Student created successfully",
+            });
+        }
     }
 }
+

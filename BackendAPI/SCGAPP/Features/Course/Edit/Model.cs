@@ -7,14 +7,12 @@ namespace SCGAPP.Features.Course.Edit
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public Grade Grade { get; set; }
-        public List<StudentModel> Courses { get; set; }
+        public List<EnrollmentModel> Enrollments { get; set; }
     }
     public class EditCourseResponse
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public Grade Grade { get; set; }
-        public List<StudentModel> Courses { get; set; }
+        public List<EnrollmentModel> Enrollments { get; set; }
     }
 }

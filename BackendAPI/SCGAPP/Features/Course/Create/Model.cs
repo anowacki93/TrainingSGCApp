@@ -1,14 +1,12 @@
 ﻿using MongoDB.Bson;
 using SCGAPP.Models;
 
-namespace SCGAPP.Features.Create
+namespace SCGAPP.Features.Course.Create
 {
     public class CreateCourseRequest
     {
-        public string Id { get; set; }
         public string Name { get; set; }
-        public Grade Grade { get; set; }
-        public List<StudentModel> Students { get; set; }
+        public List<EnrollmentModel>? Enrollments { get; set; }
     }
 
     public class CreateCourseResponse

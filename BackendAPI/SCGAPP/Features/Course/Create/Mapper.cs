@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using SCGAPP.Models;
 
-namespace SCGAPP.Features.Create
+namespace SCGAPP.Features.Course.Create
 {
     public class CreateCourseMapper : Profile
     {
         public CreateCourseMapper()
         {
-            CreateMap<CourseModel, CreateCourseRequest>();
+            CreateMap<CreateCourseRequest, CourseModel>();
         }
     }
 

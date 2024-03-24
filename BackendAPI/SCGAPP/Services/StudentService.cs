@@ -1,7 +1,6 @@
 ﻿using Amazon.Runtime.Internal;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using SCGAPP.Features.Create;
 using SCGAPP.Features.Student.Edit;
 using SCGAPP.Features.Student.Get;
 using SCGAPP.Models;
@@ -17,10 +16,9 @@ public class StudentService : IStudentService
 
     public async Task<StudentModel> CreateStudentAsync(StudentModel request)
     {
-        var studentModel = new StudentModel();
-        studentModel.Id = ObjectId.GenerateNewId();
-        await _studentsCollection.InsertOneAsync(studentModel);
-        return studentModel;
+        request.Id = ObjectId.GenerateNewId();
+        await _studentsCollection.InsertOneAsync(request);
+        return request;
     }
 
     public async Task<StudentModel> EditStudent(StudentModel student)

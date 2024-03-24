@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using SCGAPP.Models;
 
-namespace SCGAPP.Features.Student.Get
+namespace SCGAPP.Features.Course.Get
 {
-    public class GetAllStudentsMapper : Profile
+    public class GetAllCoursesMapper : Profile
     {
-        public GetAllStudentsMapper() 
+        public GetAllCoursesMapper() 
         {
-            CreateMap<StudentModel, GetStudentsResponse>()
+            CreateMap<CourseModel, GetCoursesResponse>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.ToString()));
         }
     }

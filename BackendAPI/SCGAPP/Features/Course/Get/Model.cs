@@ -7,14 +7,12 @@ namespace SCGAPP.Features.Course.Get
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public Grade Grade { get; set; }
-        public List<StudentModel> Students { get; set; }
+        public List<EnrollmentModel> Enrollments { get; set; }
     }
     public class GetCourseResponse
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public Grade Grade { get; set; }
-        public List<StudentModel> Students { get; set; }
+        public List<EnrollmentModel> Enrollments { get; set; }
     }
 }

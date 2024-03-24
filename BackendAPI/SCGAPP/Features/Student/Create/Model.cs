@@ -1,4 +1,4 @@
-﻿namespace SCGAPP.Features.Create
+﻿namespace SCGAPP.Features.Student.Create
 {
     public class CreateStudentRequest
     {

@@ -1,40 +1,40 @@
 ﻿using FastEndpoints;
-using SCGAPP.Features.Create;
-using SCGAPP.Features.Student.Edit;
-using SCGAPP.Features.Student.Get;
+using SCGAPP.Features.Course.Edit;
+using SCGAPP.Features.Course.Get;
 using SCGAPP.Models;
+using SCGAPP.Services.Interfaces;
 
-public class GetStudentEndpoint : Endpoint<GetStudentRequest, GetStudentResponse>
+public class GetCourseEndpoint : Endpoint<GetCourseRequest, GetCourseResponse>
 {
-    private readonly IStudentService _studentService;
+    private readonly ICourseService _CourseService;
     private readonly AutoMapper.IMapper _mapper;
 
-    public GetStudentEndpoint(IStudentService studentService, AutoMapper.IMapper mapper)
+    public GetCourseEndpoint(ICourseService CourseService, AutoMapper.IMapper mapper)
     {
-        _studentService = studentService;
+        _CourseService = CourseService;
         _mapper = mapper;
     }
 
     public override void Configure()
     {
-        Get("/student/get/{id}");
+        Get("/course/get/{id}");
         AllowAnonymous();
     }
 
-    public override async Task HandleAsync(GetStudentRequest request,CancellationToken cancellationToken)
+    public override async Task HandleAsync(GetCourseRequest request,CancellationToken cancellationToken)
     {
-        var student = _mapper.Map<StudentModel>(request);
+        var Course = _mapper.Map<CourseModel>(request);
 
-        var editedStudent = await _studentService.GetById(student.Id);
+        var editedCourse = await _CourseService.GetById(Course.Id);
 
-        if (editedStudent != null)
+        if (editedCourse != null)
         {
-            var response = _mapper.Map<GetStudentResponse>(editedStudent);
+            var response = _mapper.Map<GetCourseResponse>(editedCourse);
             await SendAsync(response, 200);
         }
         else
         {
-            await SendOkAsync(); // Sending OK response if student is not found or not edited
+            await SendOkAsync(); // Sending OK response if Course is not found or not edited
         }
     }
 }
