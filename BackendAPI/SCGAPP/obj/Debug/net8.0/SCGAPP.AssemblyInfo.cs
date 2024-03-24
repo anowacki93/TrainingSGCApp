@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SCGAPP")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0518b7347072b6610b6ba7955a9aeb40436d87e6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a1a5ba2a9aa44a440149f8ab5e95194f941743b8")]
 [assembly: System.Reflection.AssemblyProductAttribute("SCGAPP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SCGAPP")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
