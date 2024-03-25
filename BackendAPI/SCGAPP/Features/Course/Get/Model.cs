@@ -7,12 +7,19 @@ namespace SCGAPP.Features.Course.Get
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public List<EnrollmentModel> Enrollments { get; set; }
+        public List<EnrollmentModelDTO> Enrollments { get; set; }
     }
     public class GetCourseResponse
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public List<EnrollmentModel> Enrollments { get; set; }
+        public List<EnrollmentModelDTO> Enrollments { get; set; }
+    }
+
+    public class EnrollmentModelDTO
+    {
+        public string StudentId { get; set; }
+        public string CourseId { get; set; }
+        public Grade? Grade { get; set; }
     }
 }

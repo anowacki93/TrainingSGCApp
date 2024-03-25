@@ -10,7 +10,7 @@ export interface EnrollmentModel {
     grade?: Grade;
 }
 
-enum Grade
+export enum Grade
 {
     None = 0,
     Niedostateczny = 1,
