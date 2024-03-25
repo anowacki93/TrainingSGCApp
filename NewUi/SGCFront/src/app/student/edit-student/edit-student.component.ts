@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { StudentService } from '../services/student.service';
-import { Student } from '../models/student.model';
+import { StudentModel } from '../models/student.model';
 import { UpdateStudentRequest } from '../models/update-student-request.model';
 
 @Component({
@@ -15,7 +15,7 @@ export class EditStudentComponent implements OnInit, OnDestroy {
   id: string | null = null;
   paramsSubscription?: Subscription;
   editStudentSubscription?: Subscription;
-  student?: Student;
+  student?: StudentModel;
 
   constructor(
     private route: ActivatedRoute,

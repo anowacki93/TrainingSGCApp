@@ -21,10 +21,15 @@ public class CourseService : ICourseService
     public async Task<CourseModel> CreateCourseAsync(CourseModel request)
     {
         request.Id = ObjectId.GenerateNewId();
-
-        // Remove any default or invalid enrollments
         request.Enrollments = request.Enrollments?.Where(e => e.StudentId != ObjectId.Empty).ToList();
-
+        if(request.Enrollments.Where(e => e.StudentId != ObjectId.Empty).Any() == true)
+        {
+            foreach(var e in request.Enrollments)
+            {
+                e.CourseId = request.Id;
+                e.Grade = Grade.None;
+            }
+        }
         await _coursesCollection.InsertOneAsync(request);
         return request;
     }

@@ -11,7 +11,7 @@ namespace SCGAPP.Models
 
     public enum Grade
     {
-        None,
+        None = 0,
         Niedostateczny = 1,
         Dopuszcający = 2,
         Dostateczny = 3,

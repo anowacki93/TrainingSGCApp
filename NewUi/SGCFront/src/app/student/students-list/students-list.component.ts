@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StudentService } from '../services/student.service';
-import { Student } from '../models/student.model';
+import { StudentModel } from '../models/student.model';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 })
 export class StudentsListComponent implements OnInit{
 
-  students$?: Observable<Student[]>;
+  students$?: Observable<StudentModel[]>;
 
   constructor(private studentService: StudentService){
 

@@ -7,7 +7,8 @@ namespace SCGAPP.Features.Course.Create
     {
         public CreateCourseMapper()
         {
-            CreateMap<CreateCourseRequest, CourseModel>();
+            CreateMap<EnrollmentModelRequest, EnrollmentModel>().ForMember(dest => dest.Grade, opt => opt.Ignore()).ForMember(dest => dest.CourseId, opt => opt.Ignore()); ;
+            CreateMap<CreateCourseRequest, CourseModel>(); // Ignore Enrollments during the initial mapping
         }
     }
 

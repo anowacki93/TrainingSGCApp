@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentService } from '../../services/student.service';
-import { Student } from '../../models/student.model'; // Import the Student model
+import { StudentModel } from '../../models/student.model'; // Import the Student model
 
 @Component({
   selector: 'app-student',
@@ -21,7 +21,7 @@ export class AddStudentComponent {
 
   onSubmit() {
     if (this.studentForm.valid) {
-      const studentData: Student = this.studentForm.value; // Convert form value to Student object
+      const studentData: StudentModel = this.studentForm.value; // Convert form value to Student object
       this.studentService.createStudent(studentData).subscribe(
         response => {
           console.log(response);

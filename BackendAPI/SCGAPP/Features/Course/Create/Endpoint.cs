@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using SCGAPP.Models;
 using SCGAPP.Services.Interfaces;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,14 +29,16 @@ namespace SCGAPP.Features.Course.Create
 
         public override async Task HandleAsync(CreateCourseRequest request, CancellationToken cancellationToken)
         {
-            var Course = _mapper.Map<CourseModel>(request);
-            await _CourseService.CreateCourseAsync(Course);
+            var course = _mapper.Map<CourseModel>(request);
+
+            await _CourseService.CreateCourseAsync(course);
 
             await SendAsync(new CreateCourseResponse
             {
                 Message = "Course created successfully",
             });
         }
+
     }
 }
 
